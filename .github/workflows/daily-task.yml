@@ -2,7 +2,7 @@ name: Daily Python Task
 on:
   # 定时任务：北京时间每天 07:00 执行，按需修改
   schedule:
-    - cron: '0 7 * * *'
+    - cron: '0 9,20 * * *'
       timezone: Asia/Shanghai
   # 支持手动点击运行测试
   workflow_dispatch:
@@ -24,6 +24,8 @@ jobs:
           python -m pip install --upgrade pip
           # 在这里写你需要的包，例如 pip install requests pandas
           pip install requests
+          pip install lxml
+          pip install urllib3
 
       - name: Run python script
         env:
