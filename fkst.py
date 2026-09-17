@@ -5,18 +5,18 @@ import sys
 import json
 import requests
 import time
-import random
+#import random
 #import yaml
 import datetime
 #from bs4 import BeautifulSoup
-from lxml import etree
+#from lxml import etree
 import re
-import urllib3
+#import urllib3
 import os
-import time
+#import time
 import hashlib
 import fcntl
-from yy_logger import get_logger
+#from yy_logger import get_logger
 
 class FkstAPI:
     def __init__(self):
@@ -31,7 +31,7 @@ class FkstAPI:
         self.userdata = {}
         self.load_user()
 
-        self.logger = get_logger(os.path.join(os.path.dirname(os.path.realpath(__file__)), "fkst_log.txt"))
+        #self.logger = get_logger(os.path.join(os.path.dirname(os.path.realpath(__file__)), "fkst_log.txt"))
 
     def load_user(self):
         if not os.path.exists(self.user_path):
@@ -130,7 +130,7 @@ class FkstAPI:
         response = requests.post(url=url, headers=self.headers, data=self.get_form_param(data))
         json_rsp = response.json()
 
-        self.logger.info(json_rsp)
+        #self.logger.info(json_rsp)
 
         return True
 
@@ -160,7 +160,7 @@ class FkstAPI:
         json_rsp = response.json()
 
         #self.logger.info(json.dumps(json_rsp, indent=4))
-        self.logger.info(json_rsp)
+        #self.logger.info(json_rsp)
 
         return json_rsp
 
@@ -201,7 +201,7 @@ class FkstAPI:
 
         response = requests.post(url=url, headers=self.headers, data=self.get_form_param(data))
         json_rsp = response.json()
-        self.logger.info(json_rsp)
+        #self.logger.info(json_rsp)
 
         return json_rsp["checkcode"]
 
@@ -227,7 +227,7 @@ class FkstAPI:
 
         response = requests.post(url=url, headers=self.headers, data=self.get_form_param(data))
         json_rsp = response.json()
-        self.logger.info(json_rsp)
+        #self.logger.info(json_rsp)
 
         return json_rsp
 
@@ -262,7 +262,7 @@ class FkstAPI:
 
         response = requests.post(url=url, headers=self.headers, data=self.get_form_param(data))
         json_rsp = response.json()
-        self.logger.info(json.dumps(json_rsp, indent=4))
+        #self.logger.info(json.dumps(json_rsp, indent=4))
 
         return json_rsp
 
@@ -277,7 +277,7 @@ class FkstAPI:
 
     def qiandao(self):
         for k, v in self.userdata.items():
-            self.logger.info("%s %s %s" % (v["member"]["phone_number"], v["member"]["id"], v["member"]["nick_name"]))
+            #self.logger.info("%s %s %s" % (v["member"]["phone_number"], v["member"]["id"], v["member"]["nick_name"]))
             json_rsp = self.GetSTMyData5(v["member"]["openid"], v["member"]["unionid"])
             old_coin_count = json_rsp["coin_count"]
 
@@ -287,7 +287,7 @@ class FkstAPI:
             json_rsp = self.GetSTMyData5(v["member"]["openid"], v["member"]["unionid"])
             new_coin_count = json_rsp["coin_count"]
 
-            self.logger.info("%s %s --> %s" % (v["member"]["phone_number"], old_coin_count, new_coin_count))
+            #self.logger.info("%s %s --> %s" % (v["member"]["phone_number"], old_coin_count, new_coin_count))
 
         return True
 

@@ -20,15 +20,11 @@ jobs:
           python-version: "3.11"
 
       - name: Install pip dependencies
-        run: |
-          python -m pip install --upgrade pip
+        run:
+          # python -m pip install --upgrade pip
           # 在这里写你需要的包，例如 pip install requests pandas
           pip install requests
-          pip install lxml
-          pip install urllib3
 
       - name: Run python script
-        env:
-          # 密钥在这里注入，在仓库 Settings → Secrets and variables → Actions 添加
-          # API_KEY: ${{ secrets.API_KEY }}
-        run: python fkst.py
+        run:
+          python fkst.py
