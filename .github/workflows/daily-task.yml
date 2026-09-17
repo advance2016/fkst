@@ -1,0 +1,26 @@
+name: 每日自动任务
+# 触发规则：北京时间每天早上 9 点执行
+on:
+  schedule:
+    - cron: '0 9 * * *'
+      timezone: 'Asia/Shanghai'
+  # 可选：支持手动在网页点 Run workflow 测试
+  workflow_dispatch:
+
+jobs:
+  run-daily-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取仓库代码
+        uses: actions/checkout@v4
+
+      - name: 执行你的任务脚本
+        run: |
+          echo "===== 每日任务开始 ====="
+          date
+          # =========在这里写你的任务=========
+          # 例如：python task.py  / bash 脚本 / curl 请求
+          # python task.py
+          # curl https://xxx/api
+          # ==================================
+          echo "===== 每日任务结束 ====="
